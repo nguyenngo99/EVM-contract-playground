@@ -17,7 +17,7 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: () => <UsdcBalance publicClient={publicClient} />,
+  component: () => <ContractPlayground publicClient={publicClient} />,
 });
 
 const playgroundRoute = createRoute({
