@@ -3,12 +3,24 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider } from '@tanstack/react-router';
 import { router } from './router';
 import './index.css';
-// App.tsx is no longer the entry point, but we need the styles if they were in App.css.
-// However, App.tsx imported App.css. Let's import App.css here to be safe if it has global styles.
 import './App.css';
+
+import '@rainbow-me/rainbowkit/styles.css';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { WagmiProvider } from 'wagmi';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { config } from './wagmi';
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider>
+          <RouterProvider router={router} />
+        </RainbowKitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
   </StrictMode>
 );

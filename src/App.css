@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -167,7 +167,7 @@ h1 {
 
 .tab-content {
   width: 100%;
-  max-width: 900px;
+  max-width: 100%;
 }
 
 /* Contract Playground */
@@ -281,8 +281,15 @@ h1 {
 
 .functions-section {
   display: flex;
-  flex-direction: column;
   gap: 1rem;
+}
+
+.functions-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
 .functions-section h3 {
@@ -292,8 +299,8 @@ h1 {
 }
 
 .functions-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   max-height: 400px;
   overflow-y: auto;
@@ -614,4 +621,70 @@ h1 {
   font-size: 0.9rem;
   font-family: monospace;
   word-break: break-word;
+}
+
+/* Desktop Grid Layout */
+.playground-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.playground-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.playground-main {
+  width: 100%;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background: #f7fafc;
+  border-radius: 8px;
+  border: 1px dashed #e2e8f0;
+  color: #718096;
+  font-size: 1rem;
+  font-style: italic;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .contract-playground-container {
+    max-width: 100%;
+  }
+
+  .playground-grid {
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .functions-list {
+    max-height: 500px;
+    grid-template-columns: 1fr; /* Single column in sidebar */
+  }
+
+  /* Make sidebar sticky properly */
+  .playground-sidebar {
+    position: sticky;
+    top: 2rem;
+  }
+}
+
+.no-wallets {
+  padding: 2rem;
+  text-align: center;
+  color: #718096;
 }
